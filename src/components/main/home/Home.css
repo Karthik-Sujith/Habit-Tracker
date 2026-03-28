@@ -1,0 +1,609 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0e1014;
+  --surface: #141821;
+  --surface-hover: #1a2029;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(255, 255, 255, 0.2);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.55);
+  --accent: #f97316;
+  --accent-glow: rgba(249, 115, 22, 0.25);
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.15);
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  --r: 18px;
+  --r-sm: 12px;
+  --r-xs: 8px;
+  --contentW: 480px;
+}
+
+html {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at 50% 0%, #1a1f28 0%, var(--bg) 70%);
+}
+
+.app {
+  max-width: var(--contentW);
+  margin: 0 auto;
+  padding: 44px 20px 100px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Stats */
+.statsCard {
+  padding: 28px;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat.primary {
+  grid-column: span 3;
+  padding: 16px 0 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.stat.primary .statValue {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.stat.primary .statLabel {
+  font-size: 14px;
+}
+
+.streakValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.fireIcon {
+  font-size: 48px;
+}
+
+.statLabel {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValue {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Progress Bar */
+.progressContainer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.progressBar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #fb923c);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn.primary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn.primary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--border-focus);
+}
+
+.btn.primaryLight {
+  background: #fff;
+  color: #000;
+}
+
+.btn.primaryLight:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn.ghost:hover {
+  color: var(--text);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.iconBtn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--r-xs);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  opacity: 0;
+}
+
+.habitItem:hover .iconBtn {
+  opacity: 1;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.iconBtn.danger:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.iconBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Form */
+.form {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--r-sm);
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+}
+
+.formSection {
+  margin-bottom: 20px;
+}
+
+.formSection .label {
+  margin-bottom: 12px;
+  display: block;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  transition: all 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.iconChip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.iconChip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-focus);
+}
+
+.iconChip.selected {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.iconEmoji {
+  font-size: 24px;
+}
+
+.iconLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: center;
+}
+
+.iconChip.selected .iconLabel {
+  color: var(--text);
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Habit List */
+.listCard {
+  padding-bottom: 16px;
+}
+
+.habitList {
+  list-style: none;
+}
+
+.habitItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.15s ease;
+}
+
+.habitItem:last-child {
+  border-bottom: none;
+}
+
+.habitItem.completed {
+  opacity: 0.6;
+}
+
+.habitItem.completed .habitName {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.checkBtn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--border-focus);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.checkBtn:hover {
+  border-color: var(--success);
+  background: var(--success-bg);
+}
+
+.checkBtn.checked {
+  border-color: var(--success);
+  background: var(--success);
+  color: #000;
+}
+
+.checkBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.habitIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.habitInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.habitName {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.habitStreak {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* Empty State */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty svg {
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.empty p {
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.empty span {
+  font-size: 13px;
+}
+
+/* Heatmap Calendar */
+.heatmapCard {
+  padding: 20px;
+}
+
+.heatmapCard .cardTitle {
+  margin-bottom: 20px;
+}
+
+.heatmap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heatmapWeeks {
+  display: flex;
+  gap:4px;
+  justify-content:space-between;
+}
+
+.heatmapWeek {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.heatmapCell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 0.1s ease;
+}
+
+.heatmapCell[data-empty="true"] {
+  visibility: hidden;
+}
+
+.heatmapCell.today {
+  outline: 2px solid var(--text);
+  outline-offset: 1px;
+}
+
+.heatmapCell.level-0 {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.heatmapCell.level-1 {
+  background: rgba(249, 115, 22, 0.25);
+}
+
+.heatmapCell.level-2 {
+  background: rgba(249, 115, 22, 0.45);
+}
+
+.heatmapCell.level-3 {
+  background: rgba(249, 115, 22, 0.7);
+}
+
+.heatmapCell.level-4 {
+  background: #f97316;
+}
+
+.heatmapLegend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.heatmapLegend span {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.heatmapLegend .heatmapCell {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Credit */
+.credit {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  background: linear-gradient(to top, var(--bg) 50%, transparent);
+  pointer-events: none;
+}
+
+.credit span {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
+}
+
+.credit a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.15s ease;
+}
+
+.credit a:hover {
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .app {
+    padding: 32px 16px 100px;
+  }
+
+  .stat.primary .statValue {
+    font-size: 52px;
+  }
+
+  .fireIcon {
+    font-size: 40px;
+  }
+
+  .iconGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .iconBtn {
+    opacity: 1;
+  }
+}
